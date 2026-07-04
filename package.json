@@ -1,0 +1,63 @@
+{
+  "name": "encoding-converter",
+  "displayName": "Encoding Converter",
+  "description": "自动检测并转换文件编码为UTF-8，解决乱码问题",
+  "version": "1.0.0",
+  "publisher": "your-publisher-name",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:encoding-converter.convertEncoding"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "encoding-converter.convertEncoding",
+        "title": "Convert File Encoding to UTF-8",
+        "title.zh-cn": "转换文件编码为UTF-8"
+      }
+    ],
+    "menus": {
+      "editor/title/context": [
+        {
+          "command": "encoding-converter.convertEncoding",
+          "group": "1_modification"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "encoding-converter.convertEncoding",
+          "group": "1_modification"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "encoding-converter.convertEncoding",
+          "when": "!explorerResourceIsFolder",
+          "group": "2_workspace"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^2.19.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.6.3",
+    "jschardet": "^3.1.0"
+  }
+}
